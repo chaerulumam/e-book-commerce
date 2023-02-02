@@ -1,5 +1,6 @@
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import Container from "@/Components/Container";
+import DropdwonMenu from "@/Components/DropdownMenu";
 import NavLink from "@/Components/NavLink";
 import { usePage } from "@inertiajs/react";
 import React from "react";
@@ -20,14 +21,28 @@ export default function Navbar() {
                         <NavLink href="/dashboard">Dashboard</NavLink>
                         {auth.user ? (
                             <>
-                                <NavLink href="/profile">
-                                    {auth.user.name}
-                                </NavLink>
+                                <DropdwonMenu label={auth.user.name}>
+                                    <DropdwonMenu.Link href="/profile">
+                                        Profile
+                                    </DropdwonMenu.Link>
+                                    <DropdwonMenu.Link href="/cart">
+                                        Cart
+                                    </DropdwonMenu.Link>
+                                    <DropdwonMenu.Link href="/history">
+                                        History
+                                    </DropdwonMenu.Link>
+                                    <DropdwonMenu.Link
+                                        href="/logout"
+                                        method="post"
+                                    >
+                                        Logout
+                                    </DropdwonMenu.Link>
+                                </DropdwonMenu>
                             </>
                         ) : (
                             <>
-                                <NavLink href="/signin">Sign in</NavLink>
-                                <NavLink href="/signup">Dashboard</NavLink>
+                                <NavLink href="/login">Login</NavLink>
+                                <NavLink href="/register">Register</NavLink>
                             </>
                         )}
                     </div>
