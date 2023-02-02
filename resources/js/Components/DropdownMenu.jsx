@@ -47,7 +47,7 @@ function DropdwonMenu({ label, children }) {
                             />
                         </svg>
                     </Menu.Button>
-                    <Menu.Items className="absolute w-64 top-full right-0 bg-white mt-2 overflow-hidden">
+                    <Menu.Items className="absolute w-64 rounded-lg shadow-sm top-full right-0 bg-white mt-2 overflow-hidden">
                         {children}
                     </Menu.Items>
                 </>
