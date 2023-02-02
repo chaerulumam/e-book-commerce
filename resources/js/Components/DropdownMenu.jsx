@@ -2,10 +2,10 @@ import { Menu } from "@headlessui/react";
 import clsx from "clsx";
 import { Link as InertiaLink } from "@inertiajs/react";
 
-function Link({ href, children }) {
+function Link({ href, children, ...props }) {
     return (
         <Menu.Item>
-            {({ active, ...props }) => (
+            {({ active }) => (
                 <InertiaLink
                     {...props}
                     className={clsx(
