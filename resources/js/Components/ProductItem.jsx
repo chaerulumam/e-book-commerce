@@ -1,6 +1,7 @@
 import { numberFormat } from "@/Libs/helper";
 import { Link } from "@inertiajs/react";
 import React from "react";
+import Pagination from "./Pagination";
 
 export default function ProductItem({ product }) {
     return (
