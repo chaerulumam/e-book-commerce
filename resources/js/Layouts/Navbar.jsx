@@ -18,12 +18,15 @@ export default function Navbar() {
                     </NavLink>
                     <div className="flex items-center gap-x-6">
                         <NavLink href="/">Home</NavLink>
-                        <NavLink href="/dashboard">Dashboard</NavLink>
+                        <NavLink href="/products">Products</NavLink>
                         {auth.user ? (
                             <>
                                 <DropdwonMenu label={auth.user.name}>
                                     <DropdwonMenu.Link href="/profile">
                                         Profile
+                                    </DropdwonMenu.Link>
+                                    <DropdwonMenu.Link href="/dashboard">
+                                        Dashboard
                                     </DropdwonMenu.Link>
                                     <DropdwonMenu.Link href="/cart">
                                         Cart
