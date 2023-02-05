@@ -6,9 +6,11 @@ export default function PrimaryButton({
     processing,
     children,
     onClick,
+    ...props
 }) {
     return (
         <button
+            {...props}
             type={type}
             onClick={onClick}
             className={clsx(
