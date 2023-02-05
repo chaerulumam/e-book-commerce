@@ -36,8 +36,8 @@ function DropdwonMenu({ label, children }) {
                             strokeWidth={1.5}
                             stroke="currentColor"
                             className={clsx(
-                                "w-5 h-5",
-                                open && "rotate-180 transition duration-200"
+                                "w-5 h-5 transition duration-200",
+                                open && "rotate-180"
                             )}
                         >
                             <path

@@ -6,7 +6,7 @@ import { usePage } from "@inertiajs/react";
 import React from "react";
 
 export default function Navbar() {
-    const { auth } = usePage().props;
+    const { auth, categories_global } = usePage().props;
     // console.log(auth);
     return (
         <nav className="bg-white border-b py-2">
@@ -19,6 +19,15 @@ export default function Navbar() {
                     <div className="flex items-center gap-x-6">
                         <NavLink href="/">Home</NavLink>
                         <NavLink href="/products">Products</NavLink>
+                        <DropdwonMenu label="Categories">
+                            {categories_global.map((category) => (
+                                <DropdwonMenu.Link
+                                    href={`/products?category=${category.slug}`}
+                                >
+                                    {category.name}
+                                </DropdwonMenu.Link>
+                            ))}
+                        </DropdwonMenu>
                         {auth.user ? (
                             <>
                                 <DropdwonMenu label={auth.user.name}>
