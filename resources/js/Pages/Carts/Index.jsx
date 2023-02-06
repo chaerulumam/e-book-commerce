@@ -5,6 +5,7 @@ import Header from "@/Components/Header";
 import Container from "@/Components/Container";
 import { numberFormat } from "@/Libs/helper";
 import { toast } from "react-hot-toast";
+import Table from "@/Components/Table";
 
 export default function Index({ carts }) {
     const onDeleteHandler = (cart_id) => {
@@ -24,32 +25,37 @@ export default function Index({ carts }) {
                 description="The product was added to the cart"
             />
             <Container>
-                <table>
-                    <thead>
+                <Table>
+                    <Table.Thead>
                         <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th></th>
+                            <Table.Th>#</Table.Th>
+                            <Table.Th>Name</Table.Th>
+                            <Table.Th>Price</Table.Th>
+                            <Table.Th></Table.Th>
                         </tr>
-                    </thead>
-                    <tbody>
+                    </Table.Thead>
+                    <Table.Tbody>
                         {carts.length ? (
                             <>
                                 {carts.map((cart, i) => (
-                                    <tr key={cart.id}>
-                                        <td>{i + 1}</td>
-                                        <td>
+                                    <tr
+                                        className="bg-white border-b hover:bg-stone-50 hover:text-white dark:hover:bg-stone-600"
+                                        key={cart.id}
+                                    >
+                                        <Table.Td className={"w-0"}>
+                                            {i + 1}
+                                        </Table.Td>
+                                        <Table.Td>
                                             <Link
                                                 href={`/products/${cart.product.slug}`}
                                             >
                                                 {cart.product.name}
                                             </Link>
-                                        </td>
-                                        <td className="text-right">
+                                        </Table.Td>
+                                        <Table.Td className="text-right">
                                             {numberFormat(cart.price)}
-                                        </td>
-                                        <td>
+                                        </Table.Td>
+                                        <Table.Td>
                                             <button
                                                 onClick={() =>
                                                     onDeleteHandler(cart.id)
@@ -62,7 +68,7 @@ export default function Index({ carts }) {
                                                     viewBox="0 0 24 24"
                                                     strokeWidth={1.5}
                                                     stroke="currentColor"
-                                                    className="w-5 h-5"
+                                                    className="w-5 h-5 inline"
                                                 >
                                                     <path
                                                         strokeLinecap="round"
@@ -71,13 +77,13 @@ export default function Index({ carts }) {
                                                     />
                                                 </svg>
                                             </button>
-                                        </td>
+                                        </Table.Td>
                                     </tr>
                                 ))}
                                 <tr>
-                                    <td></td>
-                                    <td>Total</td>
-                                    <td className="text-right">
+                                    <Table.Td></Table.Td>
+                                    <Table.Td>Total</Table.Td>
+                                    <Table.Td className="text-right">
                                         Rp.{" "}
                                         {numberFormat(
                                             carts.reduce(
@@ -85,14 +91,28 @@ export default function Index({ carts }) {
                                                 0
                                             )
                                         )}
-                                    </td>
+                                    </Table.Td>
                                 </tr>
                             </>
                         ) : (
-                            "No Items"
+                            <Table.Empty
+                                colSpan={4}
+                                message={
+                                    <>
+                                        You are not choosen anything yet.
+                                        <br />
+                                        <Link
+                                            href="/products"
+                                            className="text-blue-500 underline"
+                                        >
+                                            Try add the new one.
+                                        </Link>
+                                    </>
+                                }
+                            />
                         )}
-                    </tbody>
-                </table>
+                    </Table.Tbody>
+                </Table>
             </Container>
         </div>
     );
