@@ -8,6 +8,7 @@ import { toast } from "react-hot-toast";
 import Table from "@/Components/Table";
 import Card from "@/Components/Card";
 import ButtonLink from "@/Components/ButtonLink";
+import DropdwonMenu from "@/Components/DropdownMenu";
 
 export default function Index({ carts }) {
     const onDeleteHandler = (cart_id) => {
@@ -141,7 +142,17 @@ export default function Index({ carts }) {
                     </Card.Table>
                 </Card>
                 <div className="mt-4 flex justify-end">
-                    <ButtonLink href="/">Pilih metode pembayaran</ButtonLink>
+                    <DropdwonMenu
+                        classNameButton="bg-blue-600 text-white px-4 py-2 rounded-lg"
+                        label="Payment method"
+                    >
+                        <DropdwonMenu.Link>
+                            BCA Virtual Account
+                        </DropdwonMenu.Link>
+                        <DropdwonMenu.Divider />
+                        <DropdwonMenu.Link>Gopay</DropdwonMenu.Link>
+                        <DropdwonMenu.Link>Ovo</DropdwonMenu.Link>
+                    </DropdwonMenu>
                 </div>
             </Container>
         </div>

@@ -21,12 +21,17 @@ function Link({ href, children, ...props }) {
     );
 }
 
-function DropdwonMenu({ label, children }) {
+function DropdwonMenu({ classNameButton = "", label, children }) {
     return (
         <Menu className="relative" as="div">
             {({ open }) => (
                 <>
-                    <Menu.Button className="flex items-center gap-x-2">
+                    <Menu.Button
+                        className={clsx(
+                            classNameButton,
+                            "flex items-center gap-x-2"
+                        )}
+                    >
                         {label}
 
                         <svg
@@ -56,5 +61,10 @@ function DropdwonMenu({ label, children }) {
     );
 }
 
+function Divider() {
+    return <div className="bg-gray-200 my-1 w-full block h-px" />;
+}
+
 DropdwonMenu.Link = Link;
+DropdwonMenu.Divider = Divider;
 export default DropdwonMenu;
