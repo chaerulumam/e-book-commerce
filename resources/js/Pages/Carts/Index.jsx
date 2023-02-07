@@ -7,7 +7,6 @@ import { numberFormat } from "@/Libs/helper";
 import { toast } from "react-hot-toast";
 import Table from "@/Components/Table";
 import Card from "@/Components/Card";
-import ButtonLink from "@/Components/ButtonLink";
 import DropdwonMenu from "@/Components/DropdownMenu";
 
 export default function Index({ carts }) {
@@ -20,6 +19,11 @@ export default function Index({ carts }) {
             }
         );
     };
+
+    let subtotal = carts.reduce((acc, cart) => acc + cart.price, 0);
+    let ppn = (11 / 100) * subtotal;
+    let total = ppn + subtotal;
+
     return (
         <div>
             <Head title="Your carts" />
@@ -92,30 +96,14 @@ export default function Index({ carts }) {
                                             <Table.Td></Table.Td>
                                             <Table.Td>PPN (10 %)</Table.Td>
                                             <Table.Td className="text-right">
-                                                Rp.{" "}
-                                                {numberFormat(
-                                                    (11 / 100) *
-                                                        carts.reduce(
-                                                            (acc, cart) =>
-                                                                acc +
-                                                                cart.price,
-                                                            0
-                                                        )
-                                                )}
+                                                Rp. {numberFormat(ppn)}
                                             </Table.Td>
                                         </tr>
                                         <tr className="text-blue-900 font-semibold">
                                             <Table.Td></Table.Td>
                                             <Table.Td>Total</Table.Td>
                                             <Table.Td className="text-right">
-                                                Rp.{" "}
-                                                {numberFormat(
-                                                    carts.reduce(
-                                                        (acc, cart) =>
-                                                            acc + cart.price,
-                                                        0
-                                                    )
-                                                )}
+                                                Rp. {numberFormat(total)}
                                             </Table.Td>
                                         </tr>
                                     </>
@@ -146,11 +134,22 @@ export default function Index({ carts }) {
                         classNameButton="bg-blue-600 text-white px-4 py-2 rounded-lg"
                         label="Payment method"
                     >
+                        <DropdwonMenu.Link
+                            href="/invoice"
+                            as="button"
+                            method="post"
+                            data={{
+                                carts: carts,
+                                total: total,
+                                payment_type: "gopay",
+                            }}
+                        >
+                            Gopay
+                        </DropdwonMenu.Link>
+                        <DropdwonMenu.Divider />
                         <DropdwonMenu.Link>
                             BCA Virtual Account
                         </DropdwonMenu.Link>
-                        <DropdwonMenu.Divider />
-                        <DropdwonMenu.Link>Gopay</DropdwonMenu.Link>
                         <DropdwonMenu.Link>Ovo</DropdwonMenu.Link>
                     </DropdwonMenu>
                 </div>
