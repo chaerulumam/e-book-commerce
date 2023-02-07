@@ -6,7 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
-auth()->loginUsingId(1);
+// auth()->loginUsingId(1);
 
 Route::get('', HomeController::class)->name('home');
 
