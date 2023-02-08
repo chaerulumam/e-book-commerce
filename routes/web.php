@@ -12,7 +12,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('', HomeController::class)->name('home');
 
 Route::get('carts', [CartController::class, 'index']);
+
 Route::post('invoice', [InvoiceController::class, 'store']);
+Route::get('invoice/{invoice:order_id}', [InvoiceController::class, 'show'])->name('invoice.show');
+
 Route::post('carts/add-to-cart/{product:slug}', [CartController::class, 'store'])->name('cart.store');
 Route::delete('carts/delete/{cart}', [CartController::class, 'destroy'])->name("cart.delete");
 
@@ -22,4 +25,4 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
