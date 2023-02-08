@@ -147,10 +147,32 @@ export default function Index({ carts }) {
                             Gopay
                         </DropdwonMenu.Link>
                         <DropdwonMenu.Divider />
-                        <DropdwonMenu.Link>
+                        <DropdwonMenu.Link
+                            href="/invoice"
+                            as="button"
+                            method="post"
+                            data={{
+                                carts: carts,
+                                total: total,
+                                payment_type: "bank_transfer",
+                                bank: "bca",
+                            }}
+                        >
                             BCA Virtual Account
                         </DropdwonMenu.Link>
-                        <DropdwonMenu.Link>Ovo</DropdwonMenu.Link>
+                        <DropdwonMenu.Link
+                            href="/invoice"
+                            as="button"
+                            method="post"
+                            data={{
+                                carts: carts,
+                                total: total,
+                                payment_type: "bank_transfer",
+                                bank: "bni",
+                            }}
+                        >
+                            BNI Virtual Account
+                        </DropdwonMenu.Link>
                     </DropdwonMenu>
                 </div>
             </Container>
