@@ -31,7 +31,8 @@ class CartController extends Controller
             'price' => $product->price,
         ]);
         Cache::forget('carts_global_count');
-        return back();
+
+        return redirect('/carts');
     }
 
     public function index(Request $request)

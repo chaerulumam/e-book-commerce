@@ -15,8 +15,8 @@ class InvoiceController extends Controller
         $total = (int) $request->total;
 
         $cart_ids = $request->collect('carts')->pluck('id');
-        $order_id = 'order-' . '78781238' . $request->user()->id . $cart_ids->implode('');
-        // $order_id = 'order-' . now()->format('Y') . $request->user()->id . $cart_ids->implode('');
+        // $order_id = 'order-' . '78781238' . $request->user()->id . $cart_ids->implode('');
+        $order_id = 'order-' . now()->format('Y') . $request->user()->id . $cart_ids->implode('');
         $invoiceExists = Invoice::where('order_id', $order_id)->firstOr(fn () => false);
         if ($invoiceExists) {
             return to_route('invoice.show', $invoiceExists);
