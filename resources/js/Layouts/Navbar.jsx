@@ -40,6 +40,9 @@ export default function Navbar() {
                                     <DropdwonMenu.Link href="/cart">
                                         Cart
                                     </DropdwonMenu.Link>
+                                    <DropdwonMenu.Link href="/products/me">
+                                        My Product
+                                    </DropdwonMenu.Link>
                                     <DropdwonMenu.Link href="/history">
                                         History
                                     </DropdwonMenu.Link>

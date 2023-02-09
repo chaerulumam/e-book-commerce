@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ProductResource;
 use App\Http\Resources\ProductSingleResource;
+use App\Http\Resources\UserProductResource;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -57,10 +58,12 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Request $request, Product $product)
     {
+        $isProductBougth = $request->user() ? $request->user()->products()->find($product->id) : null;
         return Inertia('Products/Show', [
-            'product' => ProductSingleResource::make($product->load('category'))
+            'product' => ProductSingleResource::make($product->load('category')),
+            'isProductBought' => $isProductBougth
         ]);
     }
 
@@ -85,6 +88,15 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         //
+    }
+
+    public function mine(Request $request)
+    {
+        $products = $request->user()->products()->latest()->paginate(5)->withQueryString();
+        
+        return inertia('Products/Mine', [
+            'products' => UserProductResource::collection($products)
+        ]);
     }
 
     /**

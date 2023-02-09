@@ -129,52 +129,54 @@ export default function Index({ carts }) {
                         </Table>
                     </Card.Table>
                 </Card>
-                <div className="mt-4 flex justify-end">
-                    <DropdwonMenu
-                        classNameButton="bg-blue-600 text-white px-4 py-2 rounded-lg"
-                        label="Payment method"
-                    >
-                        <DropdwonMenu.Link
-                            href="/invoice"
-                            as="button"
-                            method="post"
-                            data={{
-                                carts: carts,
-                                total: total,
-                                payment_type: "gopay",
-                            }}
+                {carts.length > 0 ? (
+                    <div className="mt-4 flex justify-end">
+                        <DropdwonMenu
+                            classNameButton="bg-blue-600 text-white px-4 py-2 rounded-lg"
+                            label="Payment method"
                         >
-                            Gopay
-                        </DropdwonMenu.Link>
-                        <DropdwonMenu.Divider />
-                        <DropdwonMenu.Link
-                            href="/invoice"
-                            as="button"
-                            method="post"
-                            data={{
-                                carts: carts,
-                                total: total,
-                                payment_type: "bank_transfer",
-                                bank: "bca",
-                            }}
-                        >
-                            BCA Virtual Account
-                        </DropdwonMenu.Link>
-                        <DropdwonMenu.Link
-                            href="/invoice"
-                            as="button"
-                            method="post"
-                            data={{
-                                carts: carts,
-                                total: total,
-                                payment_type: "bank_transfer",
-                                bank: "bni",
-                            }}
-                        >
-                            BNI Virtual Account
-                        </DropdwonMenu.Link>
-                    </DropdwonMenu>
-                </div>
+                            <DropdwonMenu.Link
+                                href="/invoice"
+                                as="button"
+                                method="post"
+                                data={{
+                                    carts: carts,
+                                    total: total,
+                                    payment_type: "gopay",
+                                }}
+                            >
+                                Gopay
+                            </DropdwonMenu.Link>
+                            <DropdwonMenu.Divider />
+                            <DropdwonMenu.Link
+                                href="/invoice"
+                                as="button"
+                                method="post"
+                                data={{
+                                    carts: carts,
+                                    total: total,
+                                    payment_type: "bank_transfer",
+                                    bank: "bca",
+                                }}
+                            >
+                                BCA Virtual Account
+                            </DropdwonMenu.Link>
+                            <DropdwonMenu.Link
+                                href="/invoice"
+                                as="button"
+                                method="post"
+                                data={{
+                                    carts: carts,
+                                    total: total,
+                                    payment_type: "bank_transfer",
+                                    bank: "bni",
+                                }}
+                            >
+                                BNI Virtual Account
+                            </DropdwonMenu.Link>
+                        </DropdwonMenu>
+                    </div>
+                ) : null}
             </Container>
         </div>
     );

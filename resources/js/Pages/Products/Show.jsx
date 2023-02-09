@@ -5,7 +5,8 @@ import { numberFormat } from "@/Libs/helper";
 import PrimaryButton from "@/Components/PrimaryButton";
 import Container from "@/Components/Container";
 import { toast } from "react-hot-toast";
-export default function Show({ product }) {
+import ButtonLink from "@/Components/ButtonLink";
+export default function Show({ product, auth, isProductBought }) {
     const addToCart = () => {
         router.post(
             route("cart.store", product),
@@ -46,9 +47,23 @@ export default function Show({ product }) {
                                 {numberFormat(product.price)}
                             </div>
                         </div>
-                        <PrimaryButton onClick={addToCart}>
-                            Add to cart
-                        </PrimaryButton>
+                        {auth.user ? (
+                            <>
+                                {isProductBought ? (
+                                    <ButtonLink href="/products/me">
+                                        Already bought
+                                    </ButtonLink>
+                                ) : (
+                                    <PrimaryButton onClick={addToCart}>
+                                        Add to cart
+                                    </PrimaryButton>
+                                )}
+                            </>
+                        ) : (
+                            <PrimaryButton onClick={addToCart}>
+                                Add to cart
+                            </PrimaryButton>
+                        )}
                     </div>
                 </div>
             </Container>

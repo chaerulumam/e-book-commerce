@@ -39,7 +39,7 @@ class CartController extends Controller
     {   
         $carts = Cart::query()
             ->with('product')
-            ->whereBelongsTo($request->user())->get();
+            ->whereBelongsTo($request->user())->whereNull('paid_at')->get();
         // return CartResource::collection($carts);   
         return inertia('Carts/Index', [
             'carts' => CartResource::collection($carts),

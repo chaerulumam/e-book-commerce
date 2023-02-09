@@ -74,7 +74,7 @@ class InvoiceController extends Controller
             // dd($response->json());
         }
 
-        return back();
+        return to_route('invoice.show', $invoice);
     }
 
     public function show(Invoice $invoice)
